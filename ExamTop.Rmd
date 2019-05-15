@@ -31,9 +31,9 @@ matriz
 
 # 3 pregunta Create a factor with these observations "XXL", "XXL", "XXL", "XL", "L", "M", "M", "S", "S", "S" and print a summar
 Medidas<-c("XXL", "XXL", "XXL", "XL", "L", "M", "M", "S", "S", "S")
-factor_size<-factor(Medidas)
-factor_size
-summary(factor_size)
+factor_Medidas<-factor(Medidas)
+factor_Medidas
+summary(factor_Medidas)
 
 #4 pregunta Create and print a data frame that should contain:
 # 5 of your courses (e.g. Fundamentals of Programming, Object-Oriented Programming, Databases, etc ).
