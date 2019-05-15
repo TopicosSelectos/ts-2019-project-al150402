@@ -1,0 +1,93 @@
+---
+title: "Examen Topicos"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+#Pregunta 1
+# 1.- Create a numeric vector that contains the months of a year. Then, create another vector containing the name for each month. Later, you should assign the months and names. Finally, you should select and display the months related to the summer season (June, July, August)
+
+n_mon<-c("1","2","3","4","5","6","7","8","9","10","11","12")
+n_mon
+class(n_mon)
+names(n_mon)<-c("Januery","Febraury","March","April","May","June","July","August","September","October","November","December")
+name_month<-c("Januery","Febraury","March","April","May","June","July","August","September","October","November","December")
+names(n_mon)<-name_month
+month<-n_mon
+month
+
+summer<-(month[6:8])
+summer
+
+
+
+#2.- Construct a matrix with 5 rows containing the numbers 1 up to 15, filled row-wise.
+
+matriz<-matrix(1:15,nrow = 5,byrow = TRUE)
+matriz
+
+
+# 3 pregunta Create a factor with these observations "XXL", "XXL", "XXL", "XL", "L", "M", "M", "S", "S", "S" and print a summar
+Medidas<-c("XXL", "XXL", "XXL", "XL", "L", "M", "M", "S", "S", "S")
+factor_size<-factor(Medidas)
+factor_size
+summary(factor_size)
+
+#4 pregunta Create and print a data frame that should contain:
+# 5 of your courses (e.g. Fundamentals of Programming, Object-Oriented Programming, Databases, etc ).
+# 5 of your marks
+# 5 of your professors' names
+Courses<-c("Base de datos","Aquitectura de software","Arquitectura de las computadoras","Seguridad de la informacion","Sistemas web")
+marks<-c(9,8.5,9.1,8.9,8.4)
+professors<-c("Adrian rivas","Lucero Saenz","Oscar Martinez","Maritza Varela","Alan Ponce")
+data.frame(Courses,marks,professors)
+
+
+# 5 Pregunta  Load the dataset labeled as ITU_WB.csv that is located in the data folder and storage this dataset in a variable called itu. Then, you should describe the composition of the dataset. This description must contain the number of observations, variables and the type of each variable
+
+data1<-read.csv("C:/Users/Brenda/Desktop/ts-2019-project-al150402-master/data/ITU_WB.csv")
+data1
+str(data1)
+summary(data1)
+#El dataset o data frame contiene 3735 obs. of  12 variables las cuales son num en donde viene el numero con un formato entero el otro es el de economia el cual habla sobre el pais en cuestion, el otro es el codigo del pais, la ottra columna es la de region.
+data.frame(data1)
+
+# 6 pregunta Filter the itu dataset to retrieve only the observation from Mexico, grouped by year and in descending order selecting the "Internet value" column
+data.frame(data1)
+data1%>%
+  filter(Economy=="Mexico") %>%
+  group_by(year)%>%
+  arrange(desc(Internet.value))
+
+
+#7 Pregunta Create a new variable called itu_by_year grouping per "year" and "Income group" variables. Then, remove NAs observations. Later, using the function summarize() you should estimate the median of the Internet value variable and store it in a variable called "medianValue"
+itu_by_year<-data1%>%
+  na.omit(group_by(year, Income.group))%>%
+summarize(medianvalue=median(Internet.value))
+  
+  
+  # 8 pregunta Create a line plot to visualize trends over time. You should use the variables created in the itu_by_year dataset
+  
+  library(ggplot2)
+ggplot(itu_by_year, aes(x=year, y=medianvalue))+geom_abline()
+  #9.- Create a new variable called itu_latin filtering per Region, selecting Latin America & Caribbean and grouping per Income group.
+  itu_latin<-data1%>%
+  filter(Region=="Latin America & Caribbean")%>%
+  group_by(Income.group)
+itu_latin
+  
+
+  
+  
+  #10 10.- Create a new variable called itu_2017 filtering the year 2017 and removing observations that contain NAs.
+  data.frame(data1)
+  data1%>%
+    filter(year == "2017")
+    na.omit(data1)
+  
+  
+```
+
+
